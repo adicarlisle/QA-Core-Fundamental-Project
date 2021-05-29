@@ -3,18 +3,18 @@ The fundamental skills project during DevOps training at QA
 
 ## Table of contents
 
-- [Objective](objective)
-- [Requirements](requirements)
-    - [Options](options)
-    - [Technology](technology)
-- [Planning](planning)
-- [Architecture](architecture)
-- [Front-End](front-end)
-- [Documentation](documentation)
-    - [Risk Assessment](risk-assessment)
-    - [Testing](testing)
-- [Issues](issues)
-- [Roadmap](roadmap)
+- [Objective](#objective)
+- [Requirements](#requirements)
+    - [Options](#options)
+    - [Technology](#technology)
+- [Planning](#planning)
+- [Architecture](#architecture)
+- [Front-End](#front-end)
+- [Documentation](#documentation)
+    - [Risk Assessment](#risk-assessment)
+    - [Testing](#testing)
+- [Issues](#issues)
+- [Roadmap](#roadmap)
 ## Objective
 To create a CRUD application with utilisation of supporting tools, methodologies and technologies that encapsulate all core modules covered during training.
 
