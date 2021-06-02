@@ -18,6 +18,8 @@ The fundamental skills project during DevOps training at QA
 ## Objective
 To create a CRUD application with utilisation of supporting tools, methodologies and technologies that encapsulate all core modules covered during training.
 
+This project aims to complete the objective as a **ttrpg** dice application.
+
 ### Requirements
 
 - Kanban board (Trello)
