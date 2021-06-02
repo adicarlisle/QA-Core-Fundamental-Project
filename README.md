@@ -69,7 +69,7 @@ To create a CRUD application with utilisation of supporting tools, methodologies
 ## Documentation
 
 ### UML diagrams for database
-![UML diagram](https://raw.githubusercontent.com/adicarlisle/QA-Core-Fundamental-Project/feature-template/database.svg)
+![UML diagram](images/databaseUML.svg)
 
 ### Risk Assessment
 
