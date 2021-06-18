@@ -71,7 +71,7 @@ This project aims to complete the objective as a **ttrpg** dice application.
 ## Documentation
 
 ### UML diagrams for database
-![UML diagram](images/databaseUML.svg)
+![UML diagram](images/MVPdatabaseUML.svg)
 
 ### Risk Assessment
 
