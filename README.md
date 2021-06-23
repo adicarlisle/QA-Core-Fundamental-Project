@@ -86,6 +86,7 @@ For a full view of the risk assessment:
 #### Integration testing
 #### CI Server / Build environment + Artifacts
 ![Automating the CI Server](images/webhook.png)
+![Working tests](images/CI-testing.png)
 ## Issues
 
 ## Roadmap

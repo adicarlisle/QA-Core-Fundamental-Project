@@ -19,7 +19,7 @@ class Dice(db.Model):
 
 class History(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     dice_id = db.Column(db.Integer, db.ForeignKey("dice.id"), nullable=False)
     time_rolled = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    #TODO value, calculate from level and range in the format Level: 2 Range: 10 -> (0-10) (0-10) 
+    
