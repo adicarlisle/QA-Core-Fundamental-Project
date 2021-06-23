@@ -13,9 +13,9 @@ db.session.add(adi)
 db.session.commit()
 db.session.add(dice1)
 db.session.commit()
-entry = History(user = Users.query.filter_by(id=1).first(), dice = Dice.query.filter_by(id=1).first())
-db.session.add(entry)
-db.session.commit()
+# entry = History(user = Users.query.filter_by(id=1).first(), dice = Dice.query.filter_by(id=1).first())
+# db.session.add(entry)
+# db.session.commit()
 
 # class BasicForm(FlaskForm):
 #     username = StringField("Username: ")
