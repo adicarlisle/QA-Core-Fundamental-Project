@@ -74,6 +74,12 @@ This project aims to complete the objective as a **ttrpg** dice application.
 ![UML diagram](images/MVPdatabaseUML.svg)
 
 ### Risk Assessment
+Truncated risk assessment:
+
+![TruncatedRiskAssessment](images/risk-truncated.png)
+
+For a full view of the risk assessment:
+[Click Here](https://docs.google.com/spreadsheets/d/1WqFukyaTO323GE5MpPM3VZ9UM3vmW91j-5BNtHYZGrc/edit?usp=sharing)
 
 ### Testing
 #### Unit testing
