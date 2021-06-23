@@ -76,7 +76,10 @@ This project aims to complete the objective as a **ttrpg** dice application.
 ### Risk Assessment
 
 ### Testing
-
+#### Unit testing
+#### Integration testing
+#### CI Server / Build environment + Artifacts
+![Automating the CI Server](images/webhook.png)
 ## Issues
 
 ## Roadmap

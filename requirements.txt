@@ -7,4 +7,3 @@ wtforms
 flask-testing
 Jinja2
 gunicorn
-flask-bcrypt
