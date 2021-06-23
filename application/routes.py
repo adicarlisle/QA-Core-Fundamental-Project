@@ -3,10 +3,9 @@ from application.models import Users, Dice, History
 from flask import render_template, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
-
 #Testing the database with dummy data
 db.drop_all()
-# db.create_all()
+db.create_all()
 #adi = Users(username="Adi", email="adicarlisle@gmail.com", password="fakepassword", first_name="Adi",last_name="Carlisle")
 # dice1 = Dice(level=2, range=10)
 # db.session.add(adi)

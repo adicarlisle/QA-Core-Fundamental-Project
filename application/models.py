@@ -1,4 +1,4 @@
-from sqlalchemy.orm import backref
+from flask_sqlalchemy import SQLAlchemy
 from application import db
 from datetime import datetime
 
