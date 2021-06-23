@@ -5,32 +5,32 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 
 #Testing the database with dummy data
-db.create_all()
-adi = Users(username="Adi", email="adicarlisle@gmail.com", password="fakepassword", first_name="Adi",last_name="Carlisle")
-dice1 = Dice(level=2, range=10)
-db.session.add(adi)
-db.session.commit()
-db.session.add(dice1)
-db.session.commit()
-# entry = History(user = Users.query.filter_by(id=1).first(), dice = Dice.query.filter_by(id=1).first())
-# db.session.add(entry)
-# db.session.commit()
 
-# class BasicForm(FlaskForm):
-#     username = StringField("Username: ")
-#     email = StringField("Email: ")
-#     password = StringField("Password: ")
-#     first_name = StringField("First name: ")
-#     last_name = StringField("Last name: ")
-#     submit = SubmitField("Send data")
 
-# form = BasicForm()
+class BasicForm(FlaskForm):
+    username = StringField("Username: ")
+    email = StringField("Email: ")
+    password = StringField("Password: ")
+    first_name = StringField("First name: ")
+    last_name = StringField("Last name: ")
+    submit = SubmitField("Send data")
 
-@app.route("/")
-def home():
-    return render_template("index.html")
 
-# @app.route("/register", methods=["GET","POST"])
-# def register():
-#     if request.method == "POST":
-#         username = form.username.data
+
+# @app.route("/")
+# def home():
+#     return render_template("index.html")
+
+@app.route("/", methods=["GET","POST"])
+def register():
+    form = BasicForm()
+    if request.method == "POST":
+        username = form.username.data
+        email = form.email.data
+        password = form.password.data
+        first_name = form.first_name.data
+        last_name = form.last_name.data
+        entry = Users(username=username, email=email, password=password, first_name=first_name,last_name=last_name)
+        db.session.add(entry)
+        db.session.commit()
+    return render_template("index.html", form = form)
