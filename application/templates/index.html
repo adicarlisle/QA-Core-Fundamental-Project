@@ -5,20 +5,7 @@
 
 {% block body %}
 <h1>TTRPG Dice App</h1>
-<div class="form">
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        {{form.username.label}} {{form.username }}
-        <br>
-        {{form.email.label}} {{form.email }}
-        <br>
-        {{form.password.label}} {{form.password }}
-        <br>
-        {{form.first_name.label}} {{form.first_name }}
-        <br>
-        {{form.last_name.label}} {{form.last_name }}
-        <br>
-        {{ form.submit }}
-    </form>
-</div>
+
+<br><button onclick="location.href='{{ regloc }}'" type="button">Register</button>
+<button onclick="location.href='{{ logloc }}'" type="button">Log in</button>
 {% endblock %}
