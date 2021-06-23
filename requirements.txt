@@ -1,0 +1,10 @@
+flask
+pytest
+pytest-cov
+flask_sqlalchemy
+flask_wtf
+wtforms
+flask-testing
+Jinja2
+gunicorn
+flask-bcrypt
