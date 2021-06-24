@@ -4,6 +4,12 @@
     left: 40%;
     text-align: center;
 }
+.denied {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    text-align: center;
+}
 .form {
     position: absolute;
     top: 30%;
@@ -24,43 +30,59 @@
     color: white;
 }
 
-#first:hover {
+.first:hover {
     background-color: #4CAF50;
     color: white;
 }
-#second:hover {
+.second:hover {
     background-color: #4CAF50;
     color: white;
 }
-#third:hover {
+.third:hover {
     background-color: #4CAF50;
     color: white;
 }
-#fourth:hover {
+.fourth:hover {
     background-color: #4CAF50;
     color: white;
 }
-#fifth:hover {
+.fifth:hover {
     background-color: #4CAF50;
     color: white;
 }
-#hyphen:hover {
+.hyphen:hover {
     background-color: #4CAF50;
     color: white;
 }
-#sixth:hover {
+.sixth:hover {
     background-color: #4CAF50;
     color: white;
 }
-#seventh:hover {
+.seventh:hover {
     background-color: #4CAF50;
     color: white;
 }
-#eigth:hover {
+.eigth:hover {
     background-color: #4CAF50;
     color: white;
 }
-#nineth:hover {
+.nineth:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.tenth:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.eleventh:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.twelth:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.end:hover {
     background-color: #4CAF50;
     color: white;
 }
@@ -71,4 +93,8 @@ table {
 tr>td {
     padding-bottom: 1em;
     padding-left: 1em;
+}
+
+.welcome {
+    text-align: center;
 }
