@@ -1,12 +1,13 @@
 from application import db, app
 from application.models import Users, Dice, History
-from flask import render_template, request, url_for
+from flask import render_template, request, url_for, redirect
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
+from wtforms import StringField, SubmitField, PasswordField, IntegerField
 from wtforms.validators import DataRequired, Length, ValidationError, Email
 from flask_bcrypt import Bcrypt
 #Testing the database with dummy data
 
+db.create_all()
 
 class RegisterForm(FlaskForm):
     username = StringField("Username: ", validators=[
@@ -24,6 +25,7 @@ class RegisterForm(FlaskForm):
     last_name = StringField("Last name: ")
     submit = SubmitField("Register")
 
+
 class LoginForm(FlaskForm):
     username = StringField("Username: ", validators=[
         DataRequired()
@@ -32,6 +34,15 @@ class LoginForm(FlaskForm):
         DataRequired()
     ])
     submit = SubmitField("Login")
+
+class DiceForm(FlaskForm):
+    level = IntegerField("Level: ", validators=[
+        DataRequired()
+    ])
+    range = IntegerField("Range: ", validators=[
+        DataRequired()
+    ])
+    submit = SubmitField("Add Dice")
 
 @app.route("/")
 def home():
@@ -70,6 +81,30 @@ def login():
     if request.method == "POST":
         if form.validate_on_submit():
             username = form.username.data
-            password = bcrypt.generate_password_hash(form.password.data)
+            theHashToCheck = Users.query.filter_by(username=username).first().password
+        #     auth = bcrypt.check_password_hash(theHashToCheck, form.password.data)
+        #     if auth == True:
+        #         return redirect(url_for("dashboard", auth=True))
+        # else:
+        #     message = "Access denied"
+    return render_template("login.html", read=theHashToCheck, form=form, message=message,homeloc=homeloc,regloc=regloc)
 
-    return render_template("login.html", form=form, message=message,homeloc=homeloc,regloc=regloc)
+@app.route("/dashboard", methods=["GET","POST"])
+def dashboard():
+    form = DiceForm()
+    newdashboard = url_for("reset")
+    all_dice = Dice.query.all()
+    if request.method == "POST":
+        level = form.level.data
+        range = form.range.data
+        dice = Dice(level=level,range=range)
+        db.session.add(dice)
+        db.session.commit()
+        all_dice = Dice.query.all()
+    return render_template("dashboard.html",reset=newdashboard,form = form, all_dice = all_dice)
+
+@app.route("/dashboard-reset")
+def reset():
+    db.drop_all()
+    db.create_all()
+    return redirect("/dashboard")
