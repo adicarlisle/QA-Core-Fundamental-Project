@@ -80,31 +80,38 @@ def login():
     message = ""
     if request.method == "POST":
         if form.validate_on_submit():
-            username = form.username.data
-            theHashToCheck = Users.query.filter_by(username=username).first().password
-        #     auth = bcrypt.check_password_hash(theHashToCheck, form.password.data)
-        #     if auth == True:
-        #         return redirect(url_for("dashboard", auth=True))
-        # else:
-        #     message = "Access denied"
-    return render_template("login.html", read=theHashToCheck, form=form, message=message,homeloc=homeloc,regloc=regloc)
+            user = Users.query.filter_by(username=form.username.data).first()
+            if user:
+                if bcrypt.check_password_hash(user.password, form.password.data):
+                    return redirect(url_for("dashboard"),auth=True)
+
+    
+                else:
+                    message = "Login failed"
+    return render_template("login.html", form=form, message=message,homeloc=homeloc,regloc=regloc)
 
 @app.route("/dashboard", methods=["GET","POST"])
-def dashboard():
-    form = DiceForm()
-    newdashboard = url_for("reset")
-    all_dice = Dice.query.all()
-    if request.method == "POST":
-        level = form.level.data
-        range = form.range.data
-        dice = Dice(level=level,range=range)
-        db.session.add(dice)
-        db.session.commit()
+def dashboard(auth=False):
+    if auth == True:
+        form = DiceForm()
+        newdashboard = url_for("reset")
         all_dice = Dice.query.all()
-    return render_template("dashboard.html",reset=newdashboard,form = form, all_dice = all_dice)
-
+        if request.method == "POST":
+            level = form.level.data
+            range = form.range.data
+            dice = Dice(level=level,range=range)
+            db.session.add(dice)
+            db.session.commit()
+        all_dice = Dice.query.all()
+        return render_template("dashboard.html",reset=newdashboard,form = form, all_dice = all_dice)
+    else:
+        return "Access denied"
 @app.route("/dashboard-reset")
 def reset():
     db.drop_all()
     db.create_all()
     return redirect("/dashboard")
+
+@app.route("/profile")
+def profile():
+    return "Profile"
