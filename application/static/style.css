@@ -1,0 +1,68 @@
+.home {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    text-align: center;
+}
+.form {
+    position: absolute;
+    top: 30%;
+    left:40%;
+}
+.button {
+    font-size: 24px;
+    align-self: center;
+}
+.button:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#first:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+#second:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+#third:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+#fourth:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+#fifth:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+#hyphen:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+#sixth:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+#seventh:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+#eigth:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+#nineth:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+table {
+    border: none;
+}
+tr>td {
+    padding-bottom: 1em;
+    padding-left: 1em;
+}

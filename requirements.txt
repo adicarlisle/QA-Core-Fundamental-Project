@@ -9,3 +9,4 @@ Jinja2
 gunicorn
 pymysql
 flask-bcrypt
+email_validator

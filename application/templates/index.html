@@ -4,8 +4,22 @@
 {% endblock %}
 
 {% block body %}
-<h1>TTRPG Dice App</h1>
+<div class="home">
 
-<br><button onclick="location.href='{{ regloc }}'" type="button">Register</button>
-<button onclick="location.href='{{ logloc }}'" type="button">Log in</button>
+<h1>
+    <span id="first">T</span>
+    <span id="second">T</span>
+    <span id="third">R</span>
+    <span id="fourth">P</span>
+    <span id="fifth">G</span>
+    <span id="hyphen">-</span>
+    <span id="sixth">D</span>
+    <span id="seventh">i</span>
+    <span id="eigth">c</span>
+    <span id="nineth">e</span>
+</h1>
+
+<br><button class="button" onclick="location.href='{{ regloc }}'" type="button">Register</button>
+<button class="button" onclick="location.href='{{ logloc }}'" type="button">Log in</button>
+</div>
 {% endblock %}

@@ -4,22 +4,38 @@
 {% endblock %}
 
 {% block body %}
-<h1>Registration</h1>
+
 <div class="form">
+    <h1>Registration</h1>
     <form method="POST" action="">
         {{ form.hidden_tag() }}
-        {{form.username.label}} {{form.username }}
-        <br>
-        {{form.email.label}} {{form.email }}
-        <br>
-        {{form.password.label}} {{form.password }}
-        <br>
-        {{form.first_name.label}} {{form.first_name }}
-        <br>
-        {{form.last_name.label}} {{form.last_name }}
-        <br>
+        <table>
+            <tr>
+                <td>{{form.username.label}}</td>
+                <td>{{form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{form.email.label}}</td>
+                <td>{{form.email }}</td>
+            </tr>
+            <tr>
+                <td>{{form.password.label}}</td>
+                <td>{{form.password }}</td>
+            </tr>
+            <tr>
+                <td>{{form.first_name.label}}</td>
+                <td>{{form.first_name }}</td>
+            </tr>
+            <tr>
+            <td>{{form.last_name.label}}</td>
+            <td>{{form.last_name }}</td>
+            </tr>
+        </table>
         {{ message }}
         {{ form.submit }}
+        
     </form>
+    <br><button class="button" onclick="location.href='{{ homeloc }}'" type="button">Home</button>
+    <button class="button" onclick="location.href='{{ logloc }}'" type="button">Log in</button>
 </div>
 {% endblock %}

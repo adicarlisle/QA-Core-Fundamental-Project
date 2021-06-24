@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="form">
+    <h1>Login</h1>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+                <td>{{ form.username.label }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{form.password.label}}</td>
+                <td>{{form.password}}</td>
+            </tr>
+        </table>
+        {{ message }}
+        {{ form.submit }}
+    </form>
+    <br><button class="button" onclick="location.href='{{ homeloc }}'" type="button">Home</button>
+    <button class="button" onclick="location.href='{{ regloc }}'" type="button">Register</button>
+</div>
+{% endblock %}

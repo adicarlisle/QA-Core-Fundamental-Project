@@ -8,11 +8,12 @@ from flask_bcrypt import Bcrypt
 #Testing the database with dummy data
 
 
-class BasicForm(FlaskForm):
+class RegisterForm(FlaskForm):
     username = StringField("Username: ", validators=[
         DataRequired()
     ])
     email = StringField("Email: ", validators=[
+        Email(),
         DataRequired()
     ])
     password = PasswordField("Password: ", validators=[
@@ -21,9 +22,16 @@ class BasicForm(FlaskForm):
     ])
     first_name = StringField("First name: ")
     last_name = StringField("Last name: ")
-    submit = SubmitField("Send data")
+    submit = SubmitField("Register")
 
-
+class LoginForm(FlaskForm):
+    username = StringField("Username: ", validators=[
+        DataRequired()
+    ])
+    password = PasswordField("Password: ", validators=[
+        DataRequired()
+    ])
+    submit = SubmitField("Login")
 
 @app.route("/")
 def home():
@@ -33,7 +41,9 @@ def home():
 
 @app.route("/register", methods=["GET","POST"])
 def register():
-    form = BasicForm()
+    form = RegisterForm()
+    homeloc = url_for("home")
+    logloc = url_for("login")
     bcrypt = Bcrypt(app)
     message = ""
     if request.method == "POST":
@@ -48,8 +58,18 @@ def register():
             db.session.commit()
         else:
             message = "You have entered incorrect details, the password must be 8 characters long"
-    return render_template("register.html", form = form, message = message)
+    return render_template("register.html", form = form, message = message, homeloc=homeloc, logloc = logloc)
 
 @app.route("/login", methods=["GET","POST"])
 def login():
-    return "Login"
+    homeloc = url_for("home")
+    regloc = url_for("register")
+    bcrypt = Bcrypt(app)
+    form = LoginForm()
+    message = ""
+    if request.method == "POST":
+        if form.validate_on_submit():
+            username = form.username.data
+            password = bcrypt.generate_password_hash(form.password.data)
+
+    return render_template("login.html", form=form, message=message,homeloc=homeloc,regloc=regloc)
