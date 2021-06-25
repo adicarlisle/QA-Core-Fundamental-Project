@@ -28,8 +28,14 @@
     
     {% for item in all_dice %}
     <h1>Dice: {{ item.level }}d{{ item.range }}
-        <form action="{{ url_for('reset', id=item.id) }}" method="POST">
+        <form action="{{ url_for('reset_dice', id=item.id) }}" method="POST">
             <button class="button" type="submit">Delete</button>
+        </form>
+        <form action="{{ url_for('update', id=item.id) }}" method="POST">
+            <button class="button" type="submit">Update</button>
+        </form>
+        <form action="{{ url_for('roll', dice=item.id) }}" method="POST">
+            <button class="button" type="submit">Roll</button>
         </form>
     {% endfor %}
 </div>
@@ -40,7 +46,10 @@
         </form>
 </div>
 <div class="history">
-    <h1>
+    <form action="{{ url_for('reset_history') }}" method="POST">
+        <button class="button" type="submit">Reset</button>
+    </form>
+    <h1><u>
         <span class="first">H</span>
         <span class="second">i</span>
         <span class="third">s</span>
@@ -48,7 +57,11 @@
         <span class="fifth">o</span>
         <span class="sixth">r</span>
         <span class="seventh">y</span>
-    </h1>
+    </u></h1>
+    {% for item in history %}
+    <h1>You rolled a {{item.value}}</h1>
+    <h6>on {{item.time_rolled}}</h6>    
+    {% endfor %}
 </div>
 
 {% endblock %}

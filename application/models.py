@@ -29,4 +29,4 @@ class History(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     dice_id = db.Column(db.Integer, db.ForeignKey("dice.id"), nullable=False)
     time_rolled = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    
+    value = db.Column(db.Integer, nullable=False)

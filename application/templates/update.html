@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{%block head %}
+{% endblock %}
+
+{% block body %}
+<div class="form">
+    <h1>
+        <span class="first">U</span>
+        <span class="second">p</span>
+        <span class="third">d</span>
+        <span class="fourth">a</span>
+        <span class="fifth">t</span>
+        <span class="sixth">e</span>
+    </h1>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+                <td>{{ form.level.label }}</td>
+                <td>{{ form.level }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.range.label }}</td>
+                <td>{{ form.range }}</td>
+            </tr>
+            
+        </table>
+        {{ form.submit }}
+    </form>
+    
+</div>
+{% endblock %}

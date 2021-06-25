@@ -6,7 +6,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, IntegerField
 from wtforms.validators import DataRequired, Length, ValidationError, Email
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager, login_required, login_user, logout_user, current_user
+from flask_login import login_required, login_user, logout_user, current_user
+from random import randint
 # Testing the database with dummy data
 
 
@@ -47,7 +48,11 @@ class DiceForm(FlaskForm):
     range = IntegerField("Range: ", validators=[
         DataRequired()
     ])
-    submit = SubmitField("Add Dice")
+    submit = SubmitField("Submit")
+
+
+class HistoryForm(FlaskForm):
+    submit = SubmitField("Roll")
 
 
 @app.route("/")
@@ -79,8 +84,6 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
-    homeloc = url_for("home")
-    regloc = url_for("register")
     bcrypt = Bcrypt(app)
     form = LoginForm()
     if request.method == "GET":
@@ -100,14 +103,8 @@ def login():
 @app.route("/dashboard", methods=["GET", "POST"])
 @login_required
 def dashboard():
-    homeloc = url_for("home")
-    regloc = url_for("register")
-    logloc = url_for("login")
-    # delloc = url_for("reset")
-    outloc = url_for("logout")
     form = DiceForm()
     welcomeMessage = f"Hello " + str(current_user.username)
-    all_dice = Dice.query.all()
     if request.method == "POST":
         level = form.level.data
         range = form.range.data
@@ -115,20 +112,46 @@ def dashboard():
         db.session.add(dice)
         db.session.commit()
     all_dice = Dice.query.all()
+    history = History.query.all()
     return render_template("dashboard.html",
                            form=form,
                            welcomeMessage=welcomeMessage,
-                           all_dice=all_dice
+                           all_dice=all_dice,
+                           history=history
                            )
 
 
-@app.route("/reset/<id>", methods=["GET", "POST"])
-def reset(id):
+@app.route("/reset-dice/<id>", methods=["GET", "POST"])
+def reset_dice(id):
     id = int(id)
     item = Dice.query.filter_by(id=id).first()
     db.session.delete(item)
     db.session.commit()
     return redirect(url_for("dashboard"))
+
+@app.route("/reset-history/", methods=["GET", "POST"])
+def reset_history():
+    for i in range(len(History.query.all())):
+        item = History.query.first()
+        i += 1
+        db.session.delete(item)
+
+    db.session.commit()
+    return redirect(url_for("dashboard"))
+
+
+@app.route("/update/<id>", methods=["GET", "POST"])
+def update(id):
+    form = DiceForm()
+    id = int(id)
+    item = Dice.query.filter_by(id=id).first()
+    if request.method == "POST":
+        if form.validate_on_submit():
+            item.level = form.level.data
+            item.range = form.range.data
+            db.session.commit()
+            return redirect(url_for("dashboard"))
+    return render_template("update.html", form=form)
 
 
 @app.route("/logout")
@@ -137,7 +160,17 @@ def logout():
     logout_user()
     return redirect(url_for("login"))
 
-
-@app.route("/profile")
-def profile():
-    return "Profile"
+@app.route("/roll/<dice>", methods=["GET","POST"])
+@login_required
+def roll(dice):
+    user_item = Users.query.filter_by(username=current_user.username).first().id
+    dice = int(dice)
+    dice_item = Dice.query.filter_by(id=dice).first()
+    entry = History(user_id=user_item,
+                    dice_id=dice_item.id,
+                    value=dice_item.level*randint(0,dice_item.range)
+                    )
+    db.session.add(entry)
+    db.session.commit()
+    return redirect(url_for("dashboard"))
+ 
