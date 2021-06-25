@@ -1,7 +1,7 @@
 from flask.helpers import make_response
 from application import db, app
 from application.models import Users, Dice, History
-from flask import render_template, request, url_for, redirect, session
+from flask import render_template, request, url_for, redirect
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, IntegerField
 from wtforms.validators import DataRequired, Length, ValidationError, Email
@@ -52,19 +52,12 @@ class DiceForm(FlaskForm):
 
 @app.route("/")
 def home():
-    regloc = url_for("register")
-    logloc = url_for("login")
-    return render_template("index.html",
-                           regloc=regloc, 
-                           logloc=logloc
-                           )
+    return render_template("index.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegisterForm()
-    homeloc = url_for("home")
-    logloc = url_for("login")
     bcrypt = Bcrypt(app)
     message = ""
     if request.method == "POST":
@@ -80,12 +73,7 @@ def register():
             db.session.commit()
         else:
             message = "You have entered incorrect details, the password must be 8 characters long"
-    return render_template("register.html",
-                           form=form,
-                           message=message,
-                           homeloc=homeloc,
-                           logloc=logloc
-                           )
+    return render_template("register.html", form=form, message=message)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -96,11 +84,7 @@ def login():
     bcrypt = Bcrypt(app)
     form = LoginForm()
     if request.method == "GET":
-        return render_template("login.html",
-                               form=form,
-                               homeloc=homeloc,
-                               regloc=regloc
-                               )
+        return render_template("login.html", form=form)
     elif request.method == "POST":
         if form.validate_on_submit():
             user = Users.query.filter_by(username=form.username.data).first()
@@ -110,11 +94,7 @@ def login():
                     return redirect(url_for("dashboard"))
                 else:
                     return render_template("denied.html")
-    return render_template("login.html",
-                           form=form,
-                           homeloc=homeloc,
-                           regloc=regloc
-                           )
+    return render_template("login.html", form=form)
 
 
 @app.route("/dashboard", methods=["GET", "POST"])
@@ -123,7 +103,7 @@ def dashboard():
     homeloc = url_for("home")
     regloc = url_for("register")
     logloc = url_for("login")
-    delloc = url_for("reset")
+    # delloc = url_for("reset")
     outloc = url_for("logout")
     form = DiceForm()
     welcomeMessage = f"Hello " + str(current_user.username)
@@ -136,20 +116,16 @@ def dashboard():
         db.session.commit()
     all_dice = Dice.query.all()
     return render_template("dashboard.html",
-                           homeloc=homeloc,
-                           regloc=regloc,
-                           logloc=logloc,
-                           delloc=delloc,
-                           outloc=outloc,
                            form=form,
                            welcomeMessage=welcomeMessage,
                            all_dice=all_dice
                            )
 
 
-@app.route("/reset")
-def reset():
-    item = Dice.query.order_by(Dice.id.desc()).first()
+@app.route("/reset/<id>", methods=["GET", "POST"])
+def reset(id):
+    id = int(id)
+    item = Dice.query.filter_by(id=id).first()
     db.session.delete(item)
     db.session.commit()
     return redirect(url_for("dashboard"))

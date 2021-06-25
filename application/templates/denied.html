@@ -20,8 +20,10 @@
     <span class="twelth">d</span>
     <span class="end">!</span>
 </h1>
-<br><button class="button" onclick="location.href='{{ homeloc }}'" type="button">Home</button>
-<button class="button" onclick="location.href='{{ regloc }}'" type="button">Register</button>
-<button class="button" onclick="location.href='{{ logloc }}'" type="button">Login</button>
+<div>
+    <form action="{{ url_for('home') }}">
+        <button class="button" type="submit">Home</button>
+    </form>
+</div>
 </div>
 {% endblock %}

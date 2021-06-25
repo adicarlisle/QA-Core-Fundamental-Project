@@ -98,3 +98,11 @@ tr>td {
 .welcome {
     text-align: center;
 }
+.left_button {
+    padding-top: 10px;
+    float: left;
+}
+.right_button {
+    padding-top: 10px;
+    float: right;
+}
