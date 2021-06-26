@@ -63,14 +63,21 @@ This project aims to complete the objective as a **ttrpg** dice application.
 - Cloud server: GCP Compute Engine
 
 ## Planning
-
-## Architecture
+To view the full Trello board for this project [Click here](https://trello.com/b/Xogn4d4n/devop-core-fundamentals)
+![Trello Board](images/trello.png)
 
 ## Front-end
+The user is greeted with an option to log in or register. CSS was used to highlight individual letter upon hover.
+![Front end](images/frontend-front.png)
 
-## Documentation
+Username, email and password are mandatory fields, first name and last name are optional. The password is saved to the database using bcrypt.
+![Frontend register](images/frontend-register.png)
 
 ### UML diagrams for database
+The original ERD for this project is presented below:
+![Complicated UML diagram](images/databaseUML.svg)
+
+After more thought on the MVP and a better understanding of database design, the ERd was revised to the following:
 ![UML diagram](images/MVPdatabaseUML.svg)
 
 ### Risk Assessment
@@ -82,11 +89,14 @@ For a full view of the risk assessment:
 [Click Here](https://docs.google.com/spreadsheets/d/1WqFukyaTO323GE5MpPM3VZ9UM3vmW91j-5BNtHYZGrc/edit?usp=sharing)
 
 ### Testing
+
 #### Unit testing
+The coverage of unit testing the application.
+![Unit testing coverage](images/coverage.png)
 #### Integration testing
+
 #### CI Server / Build environment + Artifacts
 ![Automating the CI Server](images/webhook.png)
 ![Working tests](images/CI-testing.png)
 ## Issues
-
-## Roadmap
+The main issue with the app is a lack of multi-user functionality. A goal for the future is creating a history table that can be accessed and edited by multiple users.
