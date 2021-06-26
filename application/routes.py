@@ -104,7 +104,10 @@ def login():
 @login_required
 def dashboard():
     form = DiceForm()
-    welcomeMessage = f"Hello " + str(current_user.username)
+    if current_user.is_anonymous:
+        welcomeMessage = "Hello Anonymous"
+    else: 
+        welcomeMessage = f"Hello " + str(current_user.username)
     if request.method == "POST":
         level = form.level.data
         range = form.range.data
