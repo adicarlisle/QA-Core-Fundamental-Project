@@ -8,13 +8,19 @@ The fundamental skills project during DevOps training at QA
     - [Options](#options)
     - [Technology](#technology)
 - [Planning](#planning)
-- [Architecture](#architecture)
+    - [UML](#uml-diagrams-for-database) 
 - [Front-End](#front-end)
+    - [Create and read](#create-and-read)
+    - [Update](#update)
+    - [Delete](#delete)
 - [Documentation](#documentation)
     - [Risk Assessment](#risk-assessment)
     - [Testing](#testing)
+        - [CI Server](#ci-server-build-environment-artifacts)
+        - [Unit testing](#unit-testing)
+        - [Integration testing](#integration-testing)
 - [Issues](#issues)
-- [Roadmap](#roadmap)
+
 ## Objective
 To create a CRUD application with utilisation of supporting tools, methodologies and technologies that encapsulate all core modules covered during training.
 
@@ -66,6 +72,13 @@ This project aims to complete the objective as a **ttrpg** dice application.
 To view the full Trello board for this project [Click here](https://trello.com/b/Xogn4d4n/devop-core-fundamentals)
 ![Trello Board](images/trello.png)
 
+### UML diagrams for database
+The original ERD for this project is presented below:
+![Complicated UML diagram](images/databaseUML.svg)
+
+After more thought on the MVP and a better understanding of database design, the ERD was revised to the following:
+![UML diagram](images/MVPdatabaseUML.svg)
+
 ## Front-end
 The user is greeted with an option to log in or register. CSS was used to highlight individual letter upon hover.
 ![Front end](images/frontend-front.png)
@@ -98,12 +111,7 @@ The entries can be updated via the update page from the update button on the das
 A bug was found in the delete functionality where the delete button did not work when the history table had entries in it. A hot-fix was created to delete the history table when an individual dice is deleted.
 
 
-### UML diagrams for database
-The original ERD for this project is presented below:
-![Complicated UML diagram](images/databaseUML.svg)
-
-After more thought on the MVP and a better understanding of database design, the ERD was revised to the following:
-![UML diagram](images/MVPdatabaseUML.svg)
+## Documentation
 
 ### Risk Assessment
 Truncated risk assessment:
@@ -115,18 +123,18 @@ For a full view of the risk assessment:
 
 ### Testing
 
-#### CI Server / Build environment + Artifacts
-An automated Continuous integration (CI) server was setp up using Jenkins and build automation was set up using a webhook that triggered in response to git push on the dev branch of the github repo.
+#### CI Server Build environment Artifacts
+An automated Continuous integration (CI) server was set up using Jenkins and build automation was set up using a webhook that triggered in response to git push on the dev branch of the github repo.
 ![Working tests](images/CI-testing.png)
 
-##### Unit testing
+#### Unit testing
 A coverage test artifact was generated in the post build step of the build.
 
 The coverage of unit testing the application.
 
 ![Unit testing coverage](images/coverage.png)
 
-##### Integration testing
+#### Integration testing
 Buttons attached to forms failed to be accessible to the selenium tests repeatedly, therefore log in funcitonality could not be tested via selenium.
 
 
