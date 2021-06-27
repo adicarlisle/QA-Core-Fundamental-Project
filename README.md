@@ -82,7 +82,7 @@ A login page works and checks the bcrypt hash before logging in.
 The original ERD for this project is presented below:
 ![Complicated UML diagram](images/databaseUML.svg)
 
-After more thought on the MVP and a better understanding of database design, the ERd was revised to the following:
+After more thought on the MVP and a better understanding of database design, the ERD was revised to the following:
 ![UML diagram](images/MVPdatabaseUML.svg)
 
 ### Risk Assessment
@@ -103,6 +103,7 @@ An automated Continuous integration (CI) server was setp up using Jenkins and bu
 A coverage test artifact was generated in the post build step of the build.
 
 The coverage of unit testing the application.
+
 ![Unit testing coverage](images/coverage.png)
 
 ##### Integration testing
