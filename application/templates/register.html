@@ -35,12 +35,12 @@
         {{ form.submit }}
         
     </form>
-    <div class="left_button">
+    <div class="left_button" id="button1">
         <form action="{{ url_for('home') }}">
         <button class="button" type="submit">Home</button>
     </form>
 </div>
-<div class="right_button">
+<div class="right_button" id="button2">
     <form action="{{ url_for('login') }}">
         <button class="button" type="submit">Log in</button>
     </form>

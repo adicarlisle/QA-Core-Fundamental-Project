@@ -1,9 +1,11 @@
 from flask import url_for
-from flask_testing import TestCase
+from flask_testing import TestCase, LiveServerTestCase
 from werkzeug.wrappers.response import Response
 from application import app, db
 from application.models import Users, Dice, History
-
+from selenium import webdriver
+from urllib.request import urlopen
+import time
 class TestBase(TestCase):
     def create_app(self):
         app.config.update(SQLALCHEMY_DATABASE_URI="sqlite:///",
@@ -130,4 +132,55 @@ class TestViews(TestBase):
     #     response = self.client.get(url_for("roll", dice="1"))
     #     self.assert200(response, "Failed to add entry to history")
 
-    
+class SeleniumTests(LiveServerTestCase):
+    TEST_PORT = 5050
+
+    def create_app(self):
+        app.config.update(
+            SQLALCHEMY_DATABASE_URI="sqlite:///",
+            LIVESERVER_PORT=self.TEST_PORT,
+
+            DEBUG=True,
+            TESTING=True
+
+        )
+        return app
+
+    def setUp(self):
+        chrome_options = webdriver.chrome.options.Options()
+        chrome_options.add_argument("--headless")
+        self.driver = webdriver.Chrome(options=chrome_options)
+
+        db.create_all()
+
+        self.driver.get(f'http://localhost:{self.TEST_PORT}')
+
+    def tearDown(self):
+        self.driver.quit()
+
+        db.drop_all()
+
+    def test_live(self):
+        response = urlopen(f'http://localhost:{self.TEST_PORT}')
+        self.assertEqual(response.code, 200)
+
+class TestLive(SeleniumTests):
+    def test_live_full_usage(self):
+        correct_user_username ="test"
+        correct_user_email = "test@abracadabra.com"
+        correct_user_password = "1234567890"
+        self.driver.find_element_by_xpath('//*[@id="button1"]/form/button').click()
+        self.driver.find_element_by_xpath('//*[@id="username"]').send_keys(correct_user_username)
+        self.driver.find_element_by_xpath('//*[@id="email"]').send_keys(correct_user_email)
+        self.driver.find_element_by_xpath('//*[@id="password"]').send_keys(correct_user_password)
+        self.driver.find_element_by_xpath('//*[@id="submit"]').click()
+        self.driver.find_element_by_css_selector('#button2 > form > button').click()
+        self.driver.find_element_by_xpath('//*[@id="username"]').send_keys(correct_user_username)
+        self.driver.find_element_by_xpath('//*[@id="password"]').send_keys(correct_user_password)
+        self.driver.find_element_by_xpath('//*[@id="submit"]').click()
+
+        text = self.driver.find_element_by_xpath('//*[@id="welcomeMessage"]')
+        self.assertEqual(text, f'Hello {correct_user_username}')
+
+        
+

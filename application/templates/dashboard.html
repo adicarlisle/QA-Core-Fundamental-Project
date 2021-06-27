@@ -40,7 +40,7 @@
     {% endfor %}
 </div>
 <div class="welcome">
-    <h1>{{welcomeMessage}}
+    <h1 id="welcomeMessage">{{welcomeMessage}}
         <form action="{{ url_for('logout') }}">
             <button class="button" type="submit">Log out</button>
         </form>

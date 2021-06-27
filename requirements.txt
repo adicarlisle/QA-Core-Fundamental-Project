@@ -11,3 +11,4 @@ pymysql
 flask-bcrypt
 email_validator
 flask-login
+selenium
