@@ -78,6 +78,7 @@ def register():
             db.session.commit()
         else:
             message = "You have entered incorrect details, the password must be 8 characters long"
+            
     return render_template("register.html", form=form, message=message)
 
 

@@ -73,6 +73,9 @@ The user is greeted with an option to log in or register. CSS was used to highli
 Username, email and password are mandatory fields, first name and last name are optional. The password is saved to the database using bcrypt.
 ![Frontend register](images/frontend-register.png)
 
+A login page works and checks the bcrypt hash before logging in
+![Frontend login](images/frontend-login.png)
+
 ### UML diagrams for database
 The original ERD for this project is presented below:
 ![Complicated UML diagram](images/databaseUML.svg)
@@ -90,17 +93,21 @@ For a full view of the risk assessment:
 
 ### Testing
 
-#### Unit testing
-
-#### Integration testing
-
 #### CI Server / Build environment + Artifacts
 An automated Continuous integration (CI) server was setp up using Jenkins and build automation was set up using a webhook that triggered in response to git push on the dev branch of the github repo.
 ![Working tests](images/CI-testing.png)
 
+##### Unit testing
 A coverage test artifact was generated in the post build step of the build.
 
 The coverage of unit testing the application.
 ![Unit testing coverage](images/coverage.png)
+
+##### Integration testing
+Buttons attached to forms failed to be accessible to the selenium tests repeatedly, therefore log in funcitonality could not be tested via selenium.
+
+
 ## Issues
 The main issue with the app is a lack of multi-user functionality. A goal for the future is creating a history table that can be accessed and edited by multiple users.
+
+Integration testing using selenium repeatedly did not work.
