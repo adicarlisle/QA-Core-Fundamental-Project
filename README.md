@@ -71,9 +71,11 @@ The user is greeted with an option to log in or register. CSS was used to highli
 ![Front end](images/frontend-front.png)
 
 Username, email and password are mandatory fields, first name and last name are optional. The password is saved to the database using bcrypt.
+
 ![Frontend register](images/frontend-register.png)
 
-A login page works and checks the bcrypt hash before logging in
+A login page works and checks the bcrypt hash before logging in.
+
 ![Frontend login](images/frontend-login.png)
 
 ### UML diagrams for database
