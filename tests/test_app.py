@@ -5,7 +5,6 @@ from application import app, db
 from application.models import Users, Dice, History
 from selenium import webdriver
 from urllib.request import urlopen
-import time
 class TestBase(TestCase):
     def create_app(self):
         app.config.update(SQLALCHEMY_DATABASE_URI="sqlite:///",
