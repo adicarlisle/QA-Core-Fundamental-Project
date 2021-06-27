@@ -91,12 +91,16 @@ For a full view of the risk assessment:
 ### Testing
 
 #### Unit testing
-The coverage of unit testing the application.
-![Unit testing coverage](images/coverage.png)
+
 #### Integration testing
 
 #### CI Server / Build environment + Artifacts
-![Automating the CI Server](images/webhook.png)
+An automated Continuous integration (CI) server was setp up using Jenkins and build automation was set up using a webhook that triggered in response to git push on the dev branch of the github repo.
 ![Working tests](images/CI-testing.png)
+
+A coverage test artifact was generated in the post build step of the build.
+
+The coverage of unit testing the application.
+![Unit testing coverage](images/coverage.png)
 ## Issues
 The main issue with the app is a lack of multi-user functionality. A goal for the future is creating a history table that can be accessed and edited by multiple users.
