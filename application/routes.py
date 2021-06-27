@@ -128,9 +128,16 @@ def dashboard():
 @app.route("/reset-dice/<id>", methods=["GET", "POST"])
 def reset_dice(id):
     id = int(id)
+    for i in range(len(History.query.all())):
+        item = History.query.first()
+        i += 1
+        db.session.delete(item)
+
+    db.session.commit()
     item = Dice.query.filter_by(id=id).first()
     db.session.delete(item)
     db.session.commit()
+
     return redirect(url_for("dashboard"))
 
 @app.route("/reset-history/", methods=["GET", "POST"])

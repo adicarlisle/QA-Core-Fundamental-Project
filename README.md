@@ -78,6 +78,26 @@ A login page works and checks the bcrypt hash before logging in.
 
 ![Frontend login](images/frontend-login.png)
 
+#### Create and read
+
+The dashboard allows you to create entries in the database and read them to the page.
+
+![Frontend dashboard](images/frontend-blank.png)
+
+![Frontend create-read](images/frontend-create-read.png)
+
+#### Update
+
+The entries can be updated via the update page from the update button on the dashboard.
+
+![Frontend update](images/frontend-update-page.png)
+
+![Frontend update](images/frontend-update-addition.png)
+
+#### Delete
+A bug was found in the delete functionality where the delete button did not work when the history table had entries in it. A hot-fix was created to delete the history table when an individual dice is deleted.
+
+
 ### UML diagrams for database
 The original ERD for this project is presented below:
 ![Complicated UML diagram](images/databaseUML.svg)
@@ -114,3 +134,5 @@ Buttons attached to forms failed to be accessible to the selenium tests repeated
 The main issue with the app is a lack of multi-user functionality. A goal for the future is creating a history table that can be accessed and edited by multiple users.
 
 Integration testing using selenium repeatedly did not work.
+
+When dice has been rolled, the delete function causes errors.
